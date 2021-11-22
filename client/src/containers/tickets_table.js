@@ -46,7 +46,7 @@ const View = () => {
                       defaultSortField="id"
                       defaultSortAsc={false}
                       pagination = {true}
-                      paginationRowsPerPageOptions = {[25,50,75,100,125,150]}
+                      paginationRowsPerPageOptions = {[25,50,75,100,125150]}
                       highlightOnHover
                     />
                   </DataTableExtensions>
