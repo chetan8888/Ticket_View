@@ -1,19 +1,17 @@
 export const tickets_list_columns = [
   {
-    name: "Product ID",
-    selector: "prod_id",
+    name: "Ticket ID",
+    selector: "tick_id",
   },
   {
     name: "Name",
-    selector: "prod_name",
-  },
-  {
-    name: "Price Per Unit",
-    selector: "prod_ppu",
-  },
-
-  {
-    name: "Volume",
-    selector: "prod_vol",
-  },
+    selector: "name",
+  }
 ];
+
+export const tickets_data = [
+  {
+    tick_id: 1,
+    name: "Beetlejuice",
+  }
+]

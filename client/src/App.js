@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import Home from "./containers/home"
+import Tickets_Table from "./containers/tickets_table"
 
 import "./App.css";
 
@@ -23,6 +24,9 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Home />
+          </Route>
+          <Route exact path="/tickets">
+            <Tickets_Table />
           </Route>
         </Switch>
       </Router>
