@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import Home from "./containers/home"
 import Tickets_Table from "./containers/tickets_table"
@@ -36,6 +36,7 @@ function App() {
           <Route exact path="/error">
             <Errorpage />
           </Route>
+          <Redirect from="*" to="" />
         </Switch>
       </Router>
     </div>

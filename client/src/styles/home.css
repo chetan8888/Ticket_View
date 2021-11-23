@@ -1,0 +1,27 @@
+.logo_img 
+{
+    width: 600px;
+    /* height: 800px; */
+    object-fit: contain;
+}
+
+.right_div
+{
+    position: fixed;
+    top: 30%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+}
+
+.zend
+{
+    font-weight: bold;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 40px;
+}
+
+.contact
+{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+}

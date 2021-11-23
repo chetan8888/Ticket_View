@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
-import DataTable from "react-data-table-component";
-import DataTableExtensions from "react-data-table-component-extensions";
 import "react-data-table-component-extensions/dist/index.css";
-import { tickets_list_columns } from "./tickets_data";
 import { get_ticket_details } from "../apihelper";
 import "../styles/view_ticket.css"
+import Error from "./error"
 
 const View = () => {
 
@@ -17,6 +15,8 @@ const View = () => {
   const [type, setType] = useState("")
   const [status, setStatus] = useState("")
   const [description, setDescription] = useState("")
+  const [iserror, setIserror] = useState(false);
+  const [error_code, setError_code] = useState("");
 
   useEffect(() => {
     const queryParams = new URLSearchParams(window.location.search);
@@ -25,28 +25,43 @@ const View = () => {
     const get_details_func = async () => 
     {
       const ticket_data = await get_ticket_details(tick_id);
-      setId(ticket_data.id)
-      setSubject(ticket_data.subject || "Not Defined")
 
-      let d = ticket_data.created_at
-      let ddate = d.split('T');
-      let timePieces = ddate[1].split("Z");
-      let dtime = timePieces[0].split(".")
+      if (typeof ticket_data.error == "undefined")
+      {
+        setId(ticket_data.id)
+        setSubject(ticket_data.subject || "Not Defined")
 
-      setCreation_date(ddate[0] || "Not Defined")
-      setCreation_time(dtime || "Not Defined")
-      setCriority(ticket_data.priority || "Not Defined")
-      setType(ticket_data.type || "Not Defined")
-      setStatus(ticket_data.status || "Not Defined")
-      setDescription(ticket_data.description || "No Description")
+        let d = ticket_data.created_at
+        let ddate = d.split('T');
+        let timePieces = ddate[1].split("Z");
+        let dtime = timePieces[0].split(".")
 
-      setLoading_ticket(false)
+        setCreation_date(ddate[0] || "Not Defined")
+        setCreation_time(dtime || "Not Defined")
+        setCriority(ticket_data.priority || "Not Defined")
+        setType(ticket_data.type || "Not Defined")
+        setStatus(ticket_data.status || "Not Defined")
+        setDescription(ticket_data.description || "No Description")
+
+        setLoading_ticket(false)
+      }
+      else
+      {
+        setIserror(true);
+        setError_code(ticket_data.error);
+      } 
+      
     };
 
     get_details_func()
     
 
   }, []);
+
+  if (iserror) 
+  {
+    return <Error error_cod={error_code} />
+  }
 
   if (isLoading_ticket) {
     return <div className="main">Loading...</div>;
