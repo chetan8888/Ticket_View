@@ -6,31 +6,50 @@ import DataTableExtensions from "react-data-table-component-extensions";
 import "react-data-table-component-extensions/dist/index.css";
 // import Customer from "../customer/customer";
 import { tickets_list_columns, tickets_data } from "./tickets_data";
-// import { PRODUCT_LIST, TOP_PRODUCTS } from "../../api";
+// import { LIST_TICKETS } from "../api";
+import { getTickets } from "../apihelper";
+import css_file from "../styles/tickets_table.css"
+
 
 const View = () => {
 
   const [isLoading_tickets_list, setLoading_tickets_list] = useState(true);
   const [table_tickets_list, setTable_tickets_list] = useState({
     columns: tickets_list_columns,
-    data: tickets_data,
+    data: {},
   });
 
-  // useEffect(() => {
-  //   // List Tickets
-  //   axios.get(PRODUCT_LIST).then((response) => {
-  //     setTable_product_list((prevState) => ({
-  //       ...prevState,
+  useEffect(() => {
 
-  //       data: response.data,
-  //     }));
-  //     setLoading_product_list(false);
-  //   });
-  // }, []);
+    const tickets_func = async () => {
+      const tickets_data = await getTickets();
+      console.log(tickets_data);
 
-  // if (isLoading_product_list || isLoading_top_products_list) {
-  //   return <div className="main">Loading...</div>;
-  // }
+      tickets_data.map((ticket) => 
+      {
+        let d = ticket.created_at
+        let ddate = d.split('T');
+        let timePieces = ddate[1].split("Z");
+        let dtime = timePieces[0].split(".")
+        ticket.creation_date = ddate[0]
+        ticket.creation_time = dtime
+      })
+
+      setTable_tickets_list((prevState) => ({
+        ...prevState,
+
+        data: tickets_data,
+      }));
+      setLoading_tickets_list(false);
+
+    };
+    tickets_func()
+
+  }, []);
+
+  if (isLoading_tickets_list) {
+    return <div className="main">Loading...</div>;
+  }
 
   return (
     <>
@@ -50,6 +69,9 @@ const View = () => {
                       highlightOnHover
                     />
                   </DataTableExtensions>
+            </div>
+            <div className="click_text mt-n5 pt-1">
+              Click on a ticket to see full details
             </div>
           </div>
         </div>

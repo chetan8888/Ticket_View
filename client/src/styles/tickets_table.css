@@ -1,0 +1,8 @@
+.rdt_TableRow {
+    transition: all .2s ease;
+    /* transform: scale(0); */
+}
+
+.rdt_TableRow:hover{
+    cursor: pointer;
+}

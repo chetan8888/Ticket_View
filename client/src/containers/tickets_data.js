@@ -1,11 +1,19 @@
 export const tickets_list_columns = [
   {
-    name: "Ticket ID",
-    selector: "tick_id",
+    name: "Subject",
+    selector: "subject",
   },
   {
-    name: "Name",
-    selector: "name",
+    name: "Creation Date",
+    selector: "creation_date",
+  },
+  {
+    name: "Creation Time",
+    selector: "creation_time",
+  },
+  {
+    name: "Status",
+    selector: "status",
   }
 ];
 
