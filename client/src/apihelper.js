@@ -26,29 +26,25 @@ const getTickets = async () => {
     }
   }
 
-  const getPage = async (url) => {
+  const get_ticket_details = async () => {
     try {
-      const response = await fetch('http://localhost:5000/mytick/page', {
-        method: 'post',
-        body: url
-      });
-    
+      const response = await fetch('http://localhost:5000/tickets/ticket_details');
       if (response.status !== 200) {
         return {
           error: response.status
         }
       } else {
-        const json = await response.json()  
-        const ticketData = formatTicketData(json.tickets)
-        const pages = {
-          nextPage: json.next_page,
-          previousPage: json.previous_page,
-        }
-        return {
-          ticketData: ticketData,
-          totalTickets: json.count,
-          pages: pages
-        }
+        const json = await response.json()
+        return json.ticket
+        // return json.tickets
+        // const ticketData = formatTicketData(json.tickets)
+        // const pages = {
+        //   nextPage: json.next_page,
+        //   previousPage: json.previous_page,
+        // }
+        // return {
+        //   ticketData: ticketData,
+        // } 
       }
     }
     catch(err) {
@@ -58,24 +54,5 @@ const getTickets = async () => {
     }
   }
   
-  const formatTicketData = (tickets) => {
-    const ticketsArray = tickets.map((ticket) => {
-      let formattedTicket = {
-        id: ticket.id,
-        subject: ticket.subject,
-        description: ticket.description,
-        status: ticket.status,
-        type: ticket.type,
-        priority: ticket.priority,
-        tags: ticket.tags,
-        requested: ticket.created_at,
-        requester: ticket.requester_id
-      }
-      return formattedTicket
-    })
-    return ticketsArray
-  }
-  
-  module.exports.getTickets = getTickets;
-  module.exports.getPage = getPage;
-  module.exports.formatTicketData = formatTicketData;
+module.exports.getTickets = getTickets;
+module.exports.get_ticket_details = get_ticket_details;

@@ -16,10 +16,3 @@ export const tickets_list_columns = [
     selector: "status",
   }
 ];
-
-export const tickets_data = [
-  {
-    tick_id: 1,
-    name: "Beetlejuice",
-  }
-]

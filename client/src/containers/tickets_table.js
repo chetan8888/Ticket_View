@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { Tabs, Tab } from "react-bootstrap";
 import DataTable from "react-data-table-component";
 import DataTableExtensions from "react-data-table-component-extensions";
 import "react-data-table-component-extensions/dist/index.css";
-// import Customer from "../customer/customer";
-import { tickets_list_columns, tickets_data } from "./tickets_data";
-// import { LIST_TICKETS } from "../api";
+import { tickets_list_columns } from "./tickets_data";
 import { getTickets } from "../apihelper";
 import css_file from "../styles/tickets_table.css"
 
@@ -35,7 +31,8 @@ const View = () => {
         ticket.creation_time = dtime
       })
 
-      setTable_tickets_list((prevState) => ({
+      setTable_tickets_list((prevState) => (
+      {
         ...prevState,
 
         data: tickets_data,
@@ -51,6 +48,7 @@ const View = () => {
     return <div className="main">Loading...</div>;
   }
 
+
   return (
     <>
       <div className="container">
@@ -64,9 +62,9 @@ const View = () => {
                       noHeader
                       defaultSortField="id"
                       defaultSortAsc={false}
-                      pagination = {true}
-                      paginationRowsPerPageOptions = {[25,50,75,100,125150]}
+                      pagination
                       highlightOnHover
+                      onRowClicked={console.log("dfd")}
                     />
                   </DataTableExtensions>
             </div>
