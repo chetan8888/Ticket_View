@@ -9,7 +9,13 @@ import "../styles/tickets_table.css"
 
 const View = () => {
 
+  const view_ticket = (tick_id) =>
+  {
+    window.location = "/view_ticket?id=" + tick_id 
+  }
+
   const [isLoading_tickets_list, setLoading_tickets_list] = useState(true);
+  const [iserror, setIserror] = useState(false);
   const [table_tickets_list, setTable_tickets_list] = useState({
     columns: tickets_list_columns,
     data: {},
@@ -19,32 +25,45 @@ const View = () => {
 
     const tickets_func = async () => {
       const tickets_data = await getTickets();
-      console.log(tickets_data);
 
-      tickets_data.map((ticket) => 
+      if (typeof tickets_data.error == "undefined")
       {
-        let d = ticket.created_at
-        let ddate = d.split('T');
-        let timePieces = ddate[1].split("Z");
-        let dtime = timePieces[0].split(".")
-        ticket.creation_date = ddate[0]
-        ticket.creation_time = dtime
-      })
-
-      setTable_tickets_list((prevState) => (
+        tickets_data.map((ticket) => 
+        {
+          let d = ticket.created_at
+          let ddate = d.split('T');
+          let timePieces = ddate[1].split("Z");
+          let dtime = timePieces[0].split(".")
+          ticket.creation_date = ddate[0]
+          ticket.creation_time = dtime
+        })
+  
+        setTable_tickets_list((prevState) => (
+        {
+          ...prevState,
+  
+          data: tickets_data,
+        }));
+        setLoading_tickets_list(false);
+      }
+      else
       {
-        ...prevState,
-
-        data: tickets_data,
-      }));
-      setLoading_tickets_list(false);
+        console.log("error returned")
+        setIserror(true)
+      }   
 
     };
     tickets_func()
 
   }, []);
 
-  if (isLoading_tickets_list) {
+  if (iserror) 
+  {
+    return <div className="main">Error!</div>;
+  }
+
+  if (isLoading_tickets_list) 
+  {
     return <div className="main">Loading...</div>;
   }
 
@@ -64,7 +83,7 @@ const View = () => {
                       defaultSortAsc={false}
                       pagination
                       highlightOnHover
-                      onRowClicked={console.log("dfd")}
+                      onRowClicked={(row) => view_ticket(row.id)}
                     />
                   </DataTableExtensions>
             </div>

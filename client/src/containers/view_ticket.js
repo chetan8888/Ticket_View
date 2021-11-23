@@ -25,22 +25,20 @@ const View = () => {
     const get_details_func = async () => 
     {
       const ticket_data = await get_ticket_details(tick_id);
-      console.log(ticket_data)
-
       setId(ticket_data.id)
-      setSubject(ticket_data.subject)
+      setSubject(ticket_data.subject || "Not Defined")
 
       let d = ticket_data.created_at
       let ddate = d.split('T');
       let timePieces = ddate[1].split("Z");
       let dtime = timePieces[0].split(".")
 
-      setCreation_date(ddate[0])
-      setCreation_time(dtime)
-      setCriority(ticket_data.priority)
-      setType(ticket_data.type)
-      setStatus(ticket_data.status)
-      setDescription(ticket_data.description)
+      setCreation_date(ddate[0] || "Not Defined")
+      setCreation_time(dtime || "Not Defined")
+      setCriority(ticket_data.priority || "Not Defined")
+      setType(ticket_data.type || "Not Defined")
+      setStatus(ticket_data.status || "Not Defined")
+      setDescription(ticket_data.description || "No Description")
 
       setLoading_ticket(false)
     };
