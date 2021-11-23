@@ -2,30 +2,68 @@ const express = require("express");
 const logger = require('../utils/Logger');
 var axios = require('axios');
 const router = express.Router();
+var zendesk = require('node-zendesk');
 
 // List of tickets
 router.get("/list_tickets", (req, res) => 
 {
-    var ticket_list_api = 
-    {
-        method: 'get',
-        url: 'https://' + process.env.mysubdomain + '.zendesk.com/api/v2/tickets.json',
-        headers: 
+  const url = 'https://zccchetangour.zendesk.com/api/v2/tickets.json'
+  const zendeskAPI = {
+    method: 'get',
+    url: url,
+    headers: 
         { 
           'Authorization': 'Basic Y2hldGFuZ291cjg4QGdtYWlsLmNvbTpHb2V4dHJlbWVAMQ==', 
           'Cookie': '__cfruid=788e870bd1bc20a5da3d23592017b61a1c39e470-1637561892'
         }
-    };
-      
-    axios(ticket_list_api)
-    .then(function (response)
+  }
+  axios(zendeskAPI)
+    .then((response) => 
     {
-        res.send(response.data)
+      res.send(response.data)
     })
-    .catch(function (error)
+    .catch((err) => 
     {
-        res.send(error)
-    });
+      if (err.response === undefined) 
+      {
+        res.sendStatus(500)
+      } 
+      else if (err.response.status) 
+      {
+        res.sendStatus(err.response.status)
+      }
+    })
+});
+
+// Get details of a ticket
+router.get("/ticket_details", (req, res) => 
+{
+  const url = 'https://zccchetangour.zendesk.com/api/v2/tickets/1.json'
+  const zendeskAPI = {
+    method: 'get',
+    url: url,
+    headers: 
+        { 
+          'Authorization': 'Basic Y2hldGFuZ291cjg4QGdtYWlsLmNvbTpHb2V4dHJlbWVAMQ==', 
+          'Cookie': '__cfruid=788e870bd1bc20a5da3d23592017b61a1c39e470-1637561892'
+        }
+  }
+  axios(zendeskAPI)
+    .then((response) => 
+    {
+      res.send(response.data)
+    })
+    .catch((err) => 
+    {
+      if (err.response === undefined) 
+      {
+        res.sendStatus(500)
+      } 
+      else if (err.response.status) 
+      {
+        res.sendStatus(err.response.status)
+      }
+    })
 });
 
 module.exports = router;
