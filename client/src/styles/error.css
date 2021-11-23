@@ -1,0 +1,25 @@
+.m
+{
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.status
+{
+  
+  font-size: 100px;;
+}
+
+.head
+{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 30px;
+}
+
+.desc
+{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 20px;
+}

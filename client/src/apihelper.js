@@ -8,20 +8,11 @@ const getTickets = async () => {
       } else {
         const json = await response.json()
         return json.tickets 
-        // return json.tickets
-        // const ticketData = formatTicketData(json.tickets)
-        // const pages = {
-        //   nextPage: json.next_page,
-        //   previousPage: json.previous_page,
-        // }
-        // return {
-        //   ticketData: ticketData,
-        // } 
       }
     }
     catch(err) {
       return {
-        error: 'Server Down'
+        error: 'Server Unavailable'
       }
     }
   }
@@ -45,7 +36,7 @@ const getTickets = async () => {
     catch(err) 
     {
       return {
-        error: 'Something is wrong'
+        error: 'Server Unavailable'
       }
     }
   }

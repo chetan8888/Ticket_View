@@ -7,7 +7,7 @@ var zendesk = require('node-zendesk');
 // List of tickets
 router.get("/list_tickets", (req, res) => 
 {
-  const url = 'https://zccchetangour.zendesk.com/api/v2/tickets.json'
+  const url = 'https://' + process.env.mysubdomain + '.zendesk.com/api/v2/tickets.json'
   const zendeskAPI = {
     method: 'get',
     url: url,
@@ -38,7 +38,7 @@ router.get("/list_tickets", (req, res) =>
 // Get details of a ticket
 router.get("/ticket_details", (req, res) => 
 {
-  const url = 'https://zccchetangour.zendesk.com/api/v2/tickets/' + req.query.tick_id + '.json'
+  const url = 'https://' + process.env.mysubdomain + '.zendesk.com/api/v2/tickets/' + req.query.tick_id + '.json'
   const zendeskAPI = {
     method: 'get',
     url: url,

@@ -5,6 +5,7 @@ import "react-data-table-component-extensions/dist/index.css";
 import { tickets_list_columns } from "./tickets_data";
 import { getTickets } from "../apihelper";
 import "../styles/tickets_table.css"
+import Error from "./error"
 
 
 const View = () => {
@@ -16,6 +17,7 @@ const View = () => {
 
   const [isLoading_tickets_list, setLoading_tickets_list] = useState(true);
   const [iserror, setIserror] = useState(false);
+  const [error_code, setError_code] = useState("");
   const [table_tickets_list, setTable_tickets_list] = useState({
     columns: tickets_list_columns,
     data: {},
@@ -27,7 +29,7 @@ const View = () => {
       const tickets_data = await getTickets();
 
       if (typeof tickets_data.error == "undefined")
-      {
+      { 
         tickets_data.map((ticket) => 
         {
           let d = ticket.created_at
@@ -48,8 +50,8 @@ const View = () => {
       }
       else
       {
-        console.log("error returned")
-        setIserror(true)
+        setIserror(true);
+        setError_code(tickets_data.error);
       }   
 
     };
@@ -59,7 +61,7 @@ const View = () => {
 
   if (iserror) 
   {
-    return <div className="main">Error!</div>;
+    return <Error error_cod={error_code} />
   }
 
   if (isLoading_tickets_list) 
@@ -67,7 +69,8 @@ const View = () => {
     return <div className="main">Loading...</div>;
   }
 
-
+  else
+  {
   return (
     <>
       <div className="container">
@@ -95,6 +98,7 @@ const View = () => {
       </div>
     </>
   );
+  }
 };
 
 export default View;

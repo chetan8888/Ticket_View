@@ -4,6 +4,7 @@ import { ToastContainer } from "react-toastify";
 import Home from "./containers/home"
 import Tickets_Table from "./containers/tickets_table"
 import View_Ticket from "./containers/view_ticket"
+import Errorpage from "./containers/error"
 
 import "./App.css";
 
@@ -31,6 +32,9 @@ function App() {
           </Route>
           <Route exact path="/view_ticket">
             <View_Ticket />
+          </Route>
+          <Route exact path="/error">
+            <Errorpage />
           </Route>
         </Switch>
       </Router>
