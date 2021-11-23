@@ -26,30 +26,26 @@ const getTickets = async () => {
     }
   }
 
-  const get_ticket_details = async () => {
-    try {
-      const response = await fetch('http://localhost:5000/tickets/ticket_details');
-      if (response.status !== 200) {
+  const get_ticket_details = async (tick_id) => {
+    try 
+    {
+      const response = await fetch('http://localhost:5000/tickets/ticket_details?tick_id=' + tick_id);
+      if (response.status !== 200) 
+      {
         return {
           error: response.status
         }
-      } else {
+      } 
+      else 
+      {
         const json = await response.json()
         return json.ticket
-        // return json.tickets
-        // const ticketData = formatTicketData(json.tickets)
-        // const pages = {
-        //   nextPage: json.next_page,
-        //   previousPage: json.previous_page,
-        // }
-        // return {
-        //   ticketData: ticketData,
-        // } 
       }
     }
-    catch(err) {
+    catch(err) 
+    {
       return {
-        error: 'Server Down'
+        error: 'Something is wrong'
       }
     }
   }

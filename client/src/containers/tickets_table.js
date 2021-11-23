@@ -4,7 +4,7 @@ import DataTableExtensions from "react-data-table-component-extensions";
 import "react-data-table-component-extensions/dist/index.css";
 import { tickets_list_columns } from "./tickets_data";
 import { getTickets } from "../apihelper";
-import css_file from "../styles/tickets_table.css"
+import "../styles/tickets_table.css"
 
 
 const View = () => {
