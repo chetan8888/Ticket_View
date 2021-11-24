@@ -20,10 +20,12 @@ router.get("/list_tickets", (req, res) =>
   axios(zendeskAPI)
     .then((response) => 
     {
+      logger.info("success: Tickets List fetched successfully.")
       res.send(response.data)
     })
     .catch((err) => 
     {
+      logger.info("error: Could not fetch tickets list");
       if (err.response === undefined) 
       {
         res.sendStatus(500)
@@ -51,10 +53,12 @@ router.get("/ticket_details", (req, res) =>
   axios(zendeskAPI)
     .then((response) => 
     {
+      logger.info("success: Ticket details fetched successfully.")
       res.send(response.data)
     })
     .catch((err) => 
     {
+      logger.info("error: Could not get details of the ticket");
       if (err.response === undefined) 
       {
         res.sendStatus(500)
