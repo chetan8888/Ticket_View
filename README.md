@@ -34,4 +34,29 @@
   <li>Run "npm start" command. This will start the frontend React server at http://localhost:3000</li>
 </ol>
 
+<h3> Usage </h3>
+<ol>
+  <li>Once both the servers are up and running, navigate to http://localhost:3000 on a browser. This will render home page</li>
+  <li>Click on "View Tickets" to view all tickets in list format. Use the filter at the top left to filter the tickets on any value. You can also export the tickets data in a CSV or Excel format or export it as a PDF.</li>
+  <li>Click on any ticket row to navigate to another page that shows all the details of the ticket.</li>
+</ol>
 
+<h3> Understanding Code </h3>
+<p> I have used Node.js for my backend The server is created using the Express package and the APIs are called using the axios library. I have also used the "winston" library to log all the successfull and error messages. The log file is named "server.log" and is located in the logs folder. All the APIs created are in the "tickets.js" file locatedi nthe routes folder. The appropriate API is called for a router using the Router package. The user is automatically redirected to the home page if he/she enters a url which is not defined in this project.
+</p>
+
+<p>
+  I have used React for the frontend as it provides several extensions which are apt for this project. I used React Datatable to render the tickets in tabular form. Pagination is added for data and the user has the option to set the number of tickets displayed on the page. An appropriate error page is displayed if there was an error in getting the response from an API.  
+</p>
+
+<h3> Future Work </h3>
+<ul>
+  <li>Incorporate Login page.</li>
+  <li>Improve the styling.</li>
+  <li>Add create ticket functionality.</li>
+  <li>Allow user to update ticket.</li>
+</ul>
+
+<h4>
+Feel free to contact me regarding the project. Drop me an email at "chetangour88@gmail.com"
+</h4>
