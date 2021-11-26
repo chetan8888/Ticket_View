@@ -55,6 +55,7 @@
   <li>Improve the styling.</li>
   <li>Add create ticket functionality.</li>
   <li>Allow user to update ticket.</li>
+  <li>Improve performance by reducing the number of API calls and calling segregated data for the tickets table page.</li> 
 </ul>
 
 <h4>
