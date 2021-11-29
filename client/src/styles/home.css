@@ -1,27 +1,45 @@
-.logo_img 
+
+.top_div
 {
-    width: 600px;
-    /* height: 800px; */
-    object-fit: contain;
+    background-color: black;
+    color: white;
+    height: 100vh;
 }
 
-.right_div
+.head_text
 {
-    position: fixed;
-    top: 30%;
-    left: 70%;
-    transform: translate(-50%, -50%);
-}
-
-.zend
-{
+    font-size: 25px;
     font-weight: bold;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 40px;
 }
 
-.contact
+a, a:hover, a:focus, a:active 
 {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 20px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.zcc
+{
+    font-size: 70px;
+    font-weight: bold;
+}
+
+.name
+{
+    font-size: 25px;
+    font-weight: bold;
+    padding-top: 1%;
+}
+
+.main_text
+{
+    text-align: center;
+}
+
+.info_text
+{
+    text-align: left;
+    margin-left: 17%;
+    width: 60%;
+    font-size: 30px;
 }

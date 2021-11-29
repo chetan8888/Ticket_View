@@ -3,6 +3,7 @@ import "react-data-table-component-extensions/dist/index.css";
 import { get_ticket_details } from "../apihelper";
 import "../styles/view_ticket.css"
 import Error from "./error"
+import Header from "./header"
 
 const View = () => {
 
@@ -70,8 +71,10 @@ const View = () => {
 
   return (
     <>
-      <div className="p-4">  
-        <div className="title">
+        <Header />
+      <div className="container"></div>
+      <div className="px-4">  
+        <div className="title mt-n4">
           TICKET DETAILS
         </div>  
 

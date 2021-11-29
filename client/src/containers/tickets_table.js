@@ -6,6 +6,7 @@ import { tickets_list_columns } from "./tickets_data";
 import { getTickets } from "../apihelper";
 import "../styles/tickets_table.css"
 import Error from "./error"
+import Header from "./header"
 
 
 const View = () => {
@@ -73,7 +74,9 @@ const View = () => {
   {
   return (
     <>
+      <Header />
       <div className="container">
+        
         <div className="row">
           <div className="col-12">
             <div className="main">

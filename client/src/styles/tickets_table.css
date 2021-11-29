@@ -1,3 +1,4 @@
+
 .rdt_TableRow {
     transition: all .2s ease;
     /* transform: scale(0); */
@@ -13,4 +14,9 @@
     width: 60%;
     border: 5px solid #FFFF00;
     padding: 10px;
+}
+
+.click_text
+{
+    font-weight: bold;
 }

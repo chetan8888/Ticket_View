@@ -1,0 +1,12 @@
+.head_img
+{
+    width: auto;
+    height: 80px;
+    object-fit: fill;
+}
+
+a, a:hover, a:focus, a:active 
+{
+    text-decoration: none;
+    color: inherit;
+}
